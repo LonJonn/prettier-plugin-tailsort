@@ -22,8 +22,7 @@
 		"build": "rimraf ./lib && tsc"
 	},
 	"dependencies": {
-		"prettier": "^2.1.2",
-		"tailwind-classes-sorter": "^0.2.5",
+		"prettier": "^2.0.0",
 		"tailwindcss": "^1.8.13"
 	},
 	"devDependencies": {

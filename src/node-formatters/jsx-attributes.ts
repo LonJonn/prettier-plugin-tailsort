@@ -1,10 +1,10 @@
-import type TWClassesSorter from 'tailwind-classes-sorter'
+import type TailSort from '../Tailsort'
 
 // Formats JSX attributes
 //   eg: `<div className="container w-full"></div>`
 
 export default function jsxAttributes(
-	twClassesSorter: TWClassesSorter,
+	tailsort: TailSort,
 	node: any,
 	attributeNames: string[]
 ) {
@@ -17,7 +17,7 @@ export default function jsxAttributes(
 		node.value &&
 		(node.value.type === 'StringLiteral' || node.value.type === 'Literal')
 	) {
-		const newValue = twClassesSorter.sortClasslist(node.value.value).join(' ')
+		const newValue = tailsort.sortClasses(node.value.value)
 
 		node.value.value = newValue
 		node.value.extra = {

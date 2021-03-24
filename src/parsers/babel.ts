@@ -1,29 +1,26 @@
-import type TWClassesSorter from 'tailwind-classes-sorter'
+import type TailSort from '../Tailsort'
 import prettierParserBabel from 'prettier/parser-babel'
 import loopNodes from '../utils/loop-nodes'
-import updateOptions from '../utils/update-options'
 import jsxAttributes from '../node-formatters/jsx-attributes'
 import functionCalls from '../node-formatters/function-calls'
 import functionTemplates from '../node-formatters/function-templates'
 
-export default (twClassesSorter: TWClassesSorter) => ({
+export default (tailsort: TailSort) => ({
 	...prettierParserBabel.parsers.babel,
 	parse(text, parsers, options) {
 		const ast = prettierParserBabel.parsers.babel.parse(text, parsers, options)
 
-		if (!twClassesSorter) {
+		if (!tailsort) {
 			return ast
 		}
-
-		updateOptions(twClassesSorter, options)
 
 		const attributeNames: string[] = options.twJsxClassAttributes.split(',')
 		const functionNames: string[] = options.twSortFunctions.split(',')
 
 		const result = loopNodes(ast, node => {
-			jsxAttributes(twClassesSorter, node, attributeNames)
-			functionCalls(twClassesSorter, node, functionNames)
-			functionTemplates(twClassesSorter, node, functionNames)
+			jsxAttributes(tailsort, node, attributeNames)
+			functionCalls(tailsort, node, functionNames)
+			functionTemplates(tailsort, node, functionNames)
 
 			return node
 		})

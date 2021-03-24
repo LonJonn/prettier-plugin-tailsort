@@ -1,18 +1,15 @@
-import type TWClassesSorter from 'tailwind-classes-sorter'
+import type TailSort from '../Tailsort'
 import prettierParserPostCSS from 'prettier/parser-postcss'
 import loopNodes from '../utils/loop-nodes'
-import updateOptions from '../utils/update-options'
 
-export default (twClassesSorter: TWClassesSorter) => ({
+export default (tailsort: TailSort) => ({
 	...prettierParserPostCSS.parsers.css,
 	parse(text, parsers, options) {
 		const ast = prettierParserPostCSS.parsers.css.parse(text, parsers, options)
 
-		if (!twClassesSorter) {
+		if (!tailsort) {
 			return ast
 		}
-
-		updateOptions(twClassesSorter, options)
 
 		const result = loopNodes(ast, node => {
 			if (
@@ -21,7 +18,7 @@ export default (twClassesSorter: TWClassesSorter) => ({
 				node.name === 'apply' &&
 				node.params
 			) {
-				const newValue = twClassesSorter.sortClasslist(node.params).join(' ')
+				const newValue = tailsort.sortClasses(node.params)
 
 				node.params = newValue
 			}

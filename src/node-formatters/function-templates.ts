@@ -1,10 +1,10 @@
-import type TWClassesSorter from 'tailwind-classes-sorter'
+import type TailSort from '../Tailsort'
 
 // Formats function templates
 //   eg: `clsx\`container w-full\``
 
 export default function functionTemplates(
-	twClassesSorter: TWClassesSorter,
+	tailsort: TailSort,
 	node: any,
 	functionNames: string[]
 ) {
@@ -28,11 +28,10 @@ export default function functionTemplates(
 			const spacesAfter =
 				quasi.value.raw.length - quasi.value.raw.trimEnd().length
 
-			const newValue = `${' '.repeat(
-				spacesBefore
-			)}${twClassesSorter.sortClasslist(quasi.value.raw).join(' ')}${' '.repeat(
-				spacesAfter
-			)}`
+			let newValue = ''
+			newValue += ' '.repeat(spacesBefore)
+			newValue += tailsort.sortClasses(quasi.value.raw)
+			newValue += ' '.repeat(spacesAfter)
 
 			quasi.value = {
 				...quasi.value,

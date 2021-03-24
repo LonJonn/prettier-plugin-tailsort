@@ -1,17 +1,14 @@
-import type TWClassesSorter from 'tailwind-classes-sorter'
+import type TailSort from '../Tailsort'
 import prettierParserHTML from 'prettier/parser-html'
-import updateOptions from '../utils/update-options'
 
-export default (twClassesSorter: TWClassesSorter) => ({
+export default (tailsort: TailSort) => ({
 	...prettierParserHTML.parsers.html,
 	parse(text, parsers, options) {
 		const ast = prettierParserHTML.parsers.html.parse(text, parsers, options)
 
-		if (!twClassesSorter) {
+		if (!tailsort) {
 			return ast
 		}
-
-		updateOptions(twClassesSorter, options)
 
 		const cleanElementClasses = el => {
 			if (el.attrs) {
@@ -21,7 +18,7 @@ export default (twClassesSorter: TWClassesSorter) => ({
 						.split(' ')
 						.map(classItem => classItem.trim())
 						.filter(classItem => classItem.length > 0)
-					classAttr.value = twClassesSorter.sortClasslist(classList).join(' ')
+					classAttr.value = tailsort.sortClasses(classList)
 				}
 			}
 

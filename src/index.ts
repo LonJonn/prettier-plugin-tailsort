@@ -1,13 +1,13 @@
-import TWClassesSorter from 'tailwind-classes-sorter'
+import TailSort from './Tailsort'
 import path from 'path'
 import parsers from './parsers'
 import options from './options'
 
-const twClassesSorter = new TWClassesSorter({
+const tailsort = new TailSort({
 	nodeModulesPath: path.join(__dirname, '../../../node_modules'),
 })
 
 module.exports = {
-	parsers: parsers(twClassesSorter),
+	parsers: parsers(tailsort),
 	options,
 }
