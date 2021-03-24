@@ -1,6 +1,6 @@
 {
 	"name": "prettier-plugin-tailsort",
-	"version": "2.2.10",
+	"version": "2.2.11",
 	"description": "Sort tailwind classes",
 	"author": "Ari Seyhun <ariseyhun@live.com.au>",
 	"homepage": "https://github.com/Acidic9/prettier-plugin-tailwind#readme",
@@ -22,6 +22,7 @@
 		"build": "rimraf ./lib && tsc"
 	},
 	"dependencies": {
+		"find-up": "^5.0.0",
 		"prettier": "^2.0.0",
 		"tailwindcss": "^1.8.13"
 	},

@@ -1,9 +1,19 @@
+import findUp from 'find-up'
 import path from 'path'
 import { Options, StyleNode } from './types'
 
 export default class TailSort {
-	public static readConfig() {
-		return path.join(process.cwd(), 'tailwind.config.js')
+	public static readConfig(path?: string) {
+		if (path === undefined) {
+			path = findUp.sync('tailwind.config.js', {
+				cwd: __dirname,
+			})
+			if (!path) {
+				return null
+			}
+		}
+
+		return require(path)
 	}
 
 	private sortedSelectors: string[]
@@ -28,7 +38,7 @@ export default class TailSort {
 		this.modifierOrder = opts.modifierOrder || DEFAULT_MODIFIER_ORDER
 
 		if (!opts.nodeModulesPath) {
-			opts.nodeModulesPath = path.resolve(process.cwd(), 'node_modules')
+			opts.nodeModulesPath = findUp.sync('node_modules')!
 		}
 
 		this.tailwindInstallPath = path.join(opts.nodeModulesPath, 'tailwindcss')
@@ -395,6 +405,8 @@ const DEFAULT_MODIFIER_ORDER = [
 	'focus',
 	'disabled',
 	'checked',
+	'group-hover',
+	'group-focus',
 	'dark',
 	'sm',
 	'md',
