@@ -1,5 +1,5 @@
 {
-	"name": "prettier-plugin-tailwind",
+	"name": "prettier-plugin-tailsort",
 	"version": "2.2.10",
 	"description": "Sort tailwind classes",
 	"author": "Ari Seyhun <ariseyhun@live.com.au>",
