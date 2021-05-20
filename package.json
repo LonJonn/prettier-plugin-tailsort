@@ -1,12 +1,12 @@
 {
 	"name": "prettier-plugin-tailsort",
-	"version": "2.2.11",
+	"version": "2.2.12",
 	"description": "Sort tailwind classes",
 	"author": "Ari Seyhun <ariseyhun@live.com.au>",
-	"homepage": "https://github.com/Acidic9/prettier-plugin-tailwind#readme",
+	"homepage": "https://github.com/LonJonn/prettier-plugin-tailsort#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Acidic9/prettier-plugin-tailwind.git"
+		"url": "git+https://github.com/LonJonn/prettier-plugin-tailsort.git"
 	},
 	"keywords": [
 		"prettier",
@@ -23,7 +23,7 @@
 	},
 	"dependencies": {
 		"find-up": "^5.0.0",
-		"prettier": "^2.0.0",
+		"prettier": "^2.1.2",
 		"tailwindcss": "^1.8.13"
 	},
 	"devDependencies": {
